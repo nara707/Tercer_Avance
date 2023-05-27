@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PIA_NARAYANICABRERA_PB.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="SynEdit HTML exporter" />
+<style type="text/css">
+<!--
+body { color: #FFFFFF; background-color: #FFFFFF; }
+.cpp1-assembler { background-color: #000000; color: #808080; }
+.cpp1-character { color: #000000; }
+.cpp1-comment { color: #307EDE; font-style: italic; }
+.cpp1-float { color: #800080; }
+.cpp1-hexadecimal { color: #800080; }
+.cpp1-identifier { color: #000000; }
+.cpp1-illegalchar { color: #000000; }
+.cpp1-number { color: #800080; }
+.cpp1-octal { color: #800080; }
+.cpp1-preprocessor { color: #008000; }
+.cpp1-reservedword { color: #000000; font-weight: bold; }
+.cpp1-space { background-color: #FFFFFF; color: #000000; }
+.cpp1-string { color: #0000FF; font-weight: bold; }
+.cpp1-symbol { color: #FF0000; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<code><span style="font: 10pt Consolas;"><span class="cpp1-preprocessor">#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;string&gt;
+#include &lt;wchar.h&gt;
+#include &lt;fstream&gt;
+#include &lt;math.h&gt;
+#include &lt;stdlib.h&gt;
+</span><span class="cpp1-reservedword">using</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">namespace</span><span class="cpp1-space"> std</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-reservedword">struct</span><span class="cpp1-space"> inventario
+</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> n</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">float</span><span class="cpp1-space"> pre</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> tot</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    string status</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> gen</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> clas</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> desc</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> art</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> con</span><span class="cpp1-symbol">;
+};
+
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> cont</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> alt</span><span class="cpp1-symbol">;
+</span><span class="cpp1-identifier">inventario</span><span class="cpp1-symbol">*</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> alta</span><span class="cpp1-symbol">();
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> eliminar</span><span class="cpp1-symbol">();
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> list</span><span class="cpp1-symbol">();
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> mod</span><span class="cpp1-symbol">();
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> arch</span><span class="cpp1-symbol">();
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> abrirarch</span><span class="cpp1-symbol">();
+
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">()
+{
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> opc</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;color 0D&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    
+    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Menu %c\n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">01</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">01</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;1-.Dar de alta un articulo \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;2-.Modificar un articulo \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;3-.Baja de artuclos \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;4-.Lista de articulos \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;5-.limpiar pantalla \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;6-.salir \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Seleccione la opcion que desa del menu: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> opc</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">switch</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">opc</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">    	system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;color 03&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        alta</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">    	system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;color 07&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        mod</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">    	system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;color 01&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        eliminar</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">4</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        list</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">5</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">6</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        arch</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        abrirarch</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        exit</span><span class="cpp1-symbol">(</span><span class="cpp1-number">0</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">default</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;OPCION INEXISTENTE FAVOR DE ESCRIBIR UN VALOR DEL MENU&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> alta</span><span class="cpp1-symbol">()
+{
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nIngrese la cantidad de articulos que desea dar de alta: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">alt</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    Tienda </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">new</span><span class="cpp1-space"> inventario</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">alt</span><span class="cpp1-symbol">];
+
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> alt</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Registro %d \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n Ingrese el numero del articulo que desea dar de alta: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%i&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getchar</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> '\n'</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n Ingrese el nombre del articulo que desea dar de alta: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">art</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n Ingrese el genero del articulo que desea dar de alta: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">gen</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n Ingrese la descripcion del articulo que desea dar de alta: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">desc</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n Ingrese la clasificacion del articulo que desea dar de alta: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">clas</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n Ingresa la consola para el articulo que desea dar de alta: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">con</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n Igrese el precio del articulo que desea dar de alta: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%f&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">pre</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">tot </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">pre </span><span class="cpp1-symbol">*</span><span class="cpp1-space"> </span><span class="cpp1-float">1.16</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n El precio con el IVA incluido es un total de: $ %.2f  \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">tot</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> list</span><span class="cpp1-symbol">()
+{
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> alt</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">status </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;T-T eliminado T-T&quot;</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;registro eliminado X.X %d \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Articulo %d \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Numero: %d \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Nombre: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">art</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Genero: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space">  Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">gen</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Descripcion: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">desc</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Clasificacion: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">clas</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Consola: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">con</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Precio sin IVA: %f \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">pre</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%c Precio con IVA: %f \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-octal">03</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">tot</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> eliminar</span><span class="cpp1-symbol">()
+{
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> j</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese el articulo que desea eliminar: \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    j </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> j </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> j</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> j</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Articulo eliminado %d X.X \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> j </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">status </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;T-T eliminado T-T&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">n </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">art </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot; &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">gen </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot; &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">desc </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot; &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">clas </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot; &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">con </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot; &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">pre </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> mod</span><span class="cpp1-symbol">()
+{
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> j</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> opcion1</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> opc2</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">do
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;ingrese el numero del articulo que desa modificar: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        j </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> j </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">j </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-space"> </span><span class="cpp1-symbol">||</span><span class="cpp1-space"> j </span><span class="cpp1-symbol">&gt;=</span><span class="cpp1-space"> alt</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Articulo inexistente UnU. \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">            </span><span class="cpp1-reservedword">return</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">((</span><span class="cpp1-identifier">Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">status </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;T-T eliminado T-T&quot;</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Articulo eliminado X.X %d \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> j </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">            printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese un articulo: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">            opc2 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">            opc2 </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">opc2 </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">    </span><span class="cpp1-comment">//printf(&quot;Ingrese el dato que desea modificar: \n 1-.Nombre \n 2-.Numero de articulo\n 3-.Genero\n 4-.Descripcion\n 5-.Clasificacion\n 6-.Consola\n 7-.Precio\n&quot;);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;1-.Nombre: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">art</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">	printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;2-.Numero: %d \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;3-.Genero: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">gen</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;4-.Descripcion: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">desc</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;5-.Clasificacion: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">clas</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;6-.Consola: %s \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">con</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;7-.Precio sin IVA: %f \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">pre</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot; \n Ingrese la opcion que desea modificar: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">opcion1</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">switch</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">opcion1</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getchar</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> '\n'</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese el nuevo nombre del articulo: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">art</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getchar</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> '\n'</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese el nuevo nombre para el articulo: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getchar</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> '\n'</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese el nuevo genero: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">gen</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">4</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getchar</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> '\n'</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese la nueva descripcion: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">desc</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">5</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getchar</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> '\n'</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese la nueva clasificacion: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">clas</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">6</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getchar</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> '\n'</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese la nueva consola: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">con</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">7</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getchar</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> '\n'</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;Ingrese el nuevo precio: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%f&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">pre</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">tot </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">pre </span><span class="cpp1-symbol">*</span><span class="cpp1-space"> </span><span class="cpp1-float">1.16</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n El nuevo precio con el IVA incluido es un total de: %.2f  \n&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">tot</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">default</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;OPCION INEXISTENTE FAVOR DE ESCRIBIR UN VALOR DEL MENU\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">return</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> arch</span><span class="cpp1-symbol">()
+{
+</span><span class="cpp1-space">    ofstream archivo</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> </span><span class="cpp1-comment">//clase ofstream para escribir archivos
+</span><span class="cpp1-space">    string nomarchivo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> texto</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">    string tex</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">    nomarchivo </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;alta_articulo.txt&quot;</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">    archivo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">open</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">nomarchivo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">(),</span><span class="cpp1-space"> ios</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">out </span><span class="cpp1-symbol">|</span><span class="cpp1-space"> ios</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">binary</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">archivo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">fail</span><span class="cpp1-symbol">())
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;ERROR NO SE PUDO CREAR EL ARCHIVO&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">        exit</span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> alt</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">status </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;T-T eliminado T-T&quot;</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">            tex </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;Articulo eliminado X.X&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            texto </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> tex </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> texto </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-string">&quot;**********************&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;&gt;&gt;ARTICULO: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;NUMERO DE ARTICULO: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">n </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;NOMBRE: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">art </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;GENERO: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">gen </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;DESCRIPCION: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">desc </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;CLASIFICACION: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">clas </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;CONSOLA: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">con </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;PRECIO SIN IVA: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">pre </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&gt;PRECIO CON IVA: &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Tienda</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">].</span><span class="cpp1-identifier">tot </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">            archivo</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-string">&quot;**********************&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">    archivo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> abrirarch</span><span class="cpp1-symbol">()
+{
+</span><span class="cpp1-space">    ifstream archivo</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;alta_articulo.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">archivo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">is_open</span><span class="cpp1-symbol">())
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">        string espacio</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">archivo</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> espacio</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">            cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> espacio </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">        </span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">        archivo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;El archivo se abrio correctamente \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">    </span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">        printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;El archivo no se pudo abrir T-T \n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">    </span><span class="cpp1-symbol">}
+}
+
+</span></span>
+</code></pre>
+</body>
+</html>
